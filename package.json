@@ -4,16 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "NODE_ENV=development nodemon index.js",
     "lint": "eslint .",
-    "dev": "nodemon index.js",
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node index.js",
+    "test": "NODE_ENV=test jest --silent",
+    "test:watch": "npm run test -- --watch"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "jest": "27.4.7",
     "nodemon": "2.0.15",
-    "standard": "16.0.4"
+    "standard": "16.0.4",
+    "supertest": "6.2.1"
   },
   "dependencies": {
     "cors": "2.8.5",
@@ -22,6 +25,12 @@
     "mongoose": "6.1.5"
   },
   "eslintConfig": {
-    "extends": "./node_modules/standard/eslintrc.json"
+    "extends": "./node_modules/standard/eslintrc.json",
+    "env": {
+      "jest": true
+    }
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
